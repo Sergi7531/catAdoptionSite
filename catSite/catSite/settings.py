@@ -9,12 +9,10 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-import dj_database_url
-from pathlib import Path
-import os
-from socials.apps import SocialConfig
-import environ
 
+from pathlib import Path
+
+from socials.apps import SocialConfig
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,32 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-fy8t5!u^jr#2&9eekoet#4n+_p6u6b$qdry5tbc0omeicdnt6j'
-#
-# # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-#
-# ALLOWED_HOSTS = []
+SECRET_KEY = 'django-insecure-fy8t5!u^jr#2&9eekoet#4n+_p6u6b$qdry5tbc0omeicdnt6j'
 
-env = environ.Env()
-environ.Env.read_env(os.path.join(BASE_DIR, "catSite/catSite/.env"))  # Loads from .env file
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
 
-DEBUG = env.bool("DEBUG", default=False)
-SECRET_KEY = env("SECRET_KEY", default="django-insecure-fy8t5!u^jr#2&9eekoet#4n+_p6u6b$qdry5tbc0omeicdnt6j")
-ALLOWED_HOSTS = [ 'localhost', '127.0.0.1', 'catadoptionsite-production.up.railway.app' ]
-CSRF_TRUSTED_ORIGINS = [ ALLOWED_HOSTS, 'https://catadoptionsite-production.up.railway.app' ]
-
-DATABASES = {
-    "default": dj_database_url.config(default=env("DATABASE_URL", default="sqlite:///db.sqlite3"))
-}
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
+ALLOWED_HOSTS = []
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
@@ -68,7 +46,7 @@ INSTALLED_APPS = [
     'core',
     'catList',
     'contact',
-    'socials.apps.SocialConfig',
+    # 'socials.apps.SocialConfig',
     'image_cropping',
     'easy_thumbnails',
 ]
@@ -118,6 +96,12 @@ THUMBNAIL_PROCESSORS = (
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 
 # Password validation
