@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-fy8t5!u^jr#2&9eekoet#4n+_p6u6b$qdry5tbc0omeicdnt6j
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['healthcheck.railway.app']
+ALLOWED_HOSTS = ['healthcheck.railway.app', 'catadoptionsite-production.up.railway.app']
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
